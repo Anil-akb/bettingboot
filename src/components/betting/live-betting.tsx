@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import MatchCard from "./match-card";
 
 const liveMatches = [
   {
@@ -47,71 +48,38 @@ export default function LiveBetting() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="flex items-center">
-          <Badge variant="destructive" className="mr-2">
+          <Badge
+            variant="destructive"
+            className="mr-2 bg-red-500 hover:bg-red-600"
+          >
             LIVE
           </Badge>
-          Live Matches
+          <span className="text-white font-bold">Live Matches</span>
         </CardTitle>
-        <Button variant="ghost" size="sm" className="text-primary">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-green-500 hover:text-green-400"
+        >
           View All <ChevronRight className="ml-1 h-4 w-4" />
         </Button>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {liveMatches.map((match) => (
-            <div key={match.id} className="border rounded-md overflow-hidden">
-              <div className="bg-secondary/50 p-3 flex justify-between items-center">
-                <div>
-                  <p className="text-sm font-medium">{match.league}</p>
-                  <div className="flex items-center text-xs text-red-500 mt-1">
-                    <Clock className="h-3 w-3 mr-1" />
-                    <span>{match.minute}'</span>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold">
-                    {match.homeScore} - {match.awayScore}
-                  </div>
-                </div>
-              </div>
-              <div className="p-4">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="text-sm">
-                    <p className="font-medium">{match.homeTeam}</p>
-                    <p className="font-medium mt-1">{match.awayTeam}</p>
-                  </div>
-                  <div className="flex space-x-2">
-                    <div className="grid grid-cols-3 gap-2">
-                      <Button
-                        variant="outline"
-                        className="h-10 px-3 font-medium hover:bg-primary hover:text-primary-foreground"
-                      >
-                        {match.homeOdds.toFixed(2)}
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="h-10 px-3 font-medium hover:bg-primary hover:text-primary-foreground"
-                      >
-                        {match.drawOdds.toFixed(2)}
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="h-10 px-3 font-medium hover:bg-primary hover:text-primary-foreground"
-                      >
-                        {match.awayOdds.toFixed(2)}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full text-primary"
-                >
-                  +42 more markets
-                </Button>
-              </div>
-            </div>
+      <CardContent className="w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+          {liveMatches.map((match, index) => (
+            <MatchCard
+              key={match.id}
+              league={match.league}
+              homeTeam={match.homeTeam}
+              awayTeam={match.awayTeam}
+              time={`${match.minute}'`}
+              odds={{
+                home: match.homeOdds.toFixed(2),
+                draw: match.drawOdds.toFixed(2),
+                away: match.awayOdds.toFixed(2),
+              }}
+              index={index}
+            />
           ))}
         </div>
       </CardContent>

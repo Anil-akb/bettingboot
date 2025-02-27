@@ -12,14 +12,24 @@ interface BettingSlipProps {
   className?: string;
 }
 
+interface Selection {
+  id: string;
+  sport: string;
+  match: string;
+  bet: string;
+  odds: number;
+}
+
 export function BettingSlip({ className }: BettingSlipProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const [selections, setSelections] = useState<any[]>([]);
+  const [selections, setSelections] = useState<Selection[]>([]);
   const [stake, setStake] = useState("100");
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);
   };
+
+  const clearSelections = () => setSelections([]);
 
   const potentialWin = Number.parseFloat(stake) * 2.45; // Example calculation
 
@@ -55,6 +65,7 @@ export function BettingSlip({ className }: BettingSlipProps) {
             variant="ghost"
             size="icon"
             className="h-8 w-8 text-gray-400 hover:text-white"
+            onClick={clearSelections}
           >
             <Trash2 className="h-4 w-4" />
           </Button>

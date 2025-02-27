@@ -78,17 +78,21 @@ export default function FeaturedMatches() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Featured Matches</CardTitle>
+        <CardTitle className="text-white font-bold">Featured Matches</CardTitle>
       </CardHeader>
-      <CardContent>
-        <Tabs defaultValue="today">
+      <CardContent className="w-full">
+        <Tabs defaultValue="today" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="today">Today</TabsTrigger>
-            <TabsTrigger value="tomorrow">Tomorrow</TabsTrigger>
+            <TabsTrigger value="today" className="text-white font-bold">
+              Today
+            </TabsTrigger>
+            <TabsTrigger value="tomorrow" className="text-white font-bold">
+              Tomorrow
+            </TabsTrigger>
           </TabsList>
-          <TabsContent value="today" className="mt-4">
-            <div className="space-y-4">
-              {todayMatches.map((match) => (
+          <TabsContent value="today" className="mt-4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+              {todayMatches.map((match, index) => (
                 <MatchCard
                   key={match.id}
                   league={match.league}
@@ -100,13 +104,14 @@ export default function FeaturedMatches() {
                     draw: match.drawOdds.toString(),
                     away: match.awayOdds.toString(),
                   }}
+                  index={index}
                 />
               ))}
             </div>
           </TabsContent>
-          <TabsContent value="tomorrow" className="mt-4">
-            <div className="space-y-4">
-              {tomorrowMatches.map((match) => (
+          <TabsContent value="tomorrow" className="mt-4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+              {tomorrowMatches.map((match, index) => (
                 <MatchCard
                   key={match.id}
                   league={match.league}
@@ -118,6 +123,7 @@ export default function FeaturedMatches() {
                     draw: match.drawOdds.toString(),
                     away: match.awayOdds.toString(),
                   }}
+                  index={index}
                 />
               ))}
             </div>

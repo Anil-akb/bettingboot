@@ -11,18 +11,64 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
 export function Header() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-gray-800 bg-[#131722] px-4 text-white md:px-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="md:hidden">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
           <Menu className="h-5 w-5" />
         </Button>
         <Link href="/" className="flex items-center gap-2">
           <h1 className="text-2xl font-bold">Bantubet</h1>
         </Link>
       </div>
+      {isSidebarOpen && (
+        <nav className="absolute top-16 left-0 w-full bg-[#131722] text-white md:hidden">
+          <ul className="flex flex-col items-start p-4">
+            <li>
+              <Link
+                href="#"
+                className="block py-2 text-sm font-medium hover:text-green-500"
+              >
+                Sports
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#"
+                className="block py-2 text-sm font-medium hover:text-green-500"
+              >
+                Live
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#"
+                className="block py-2 text-sm font-medium hover:text-green-500"
+              >
+                Casino
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/promotions"
+                className="block py-2 text-sm font-medium hover:text-green-500"
+              >
+                Promotions
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      )}
       <div className="hidden items-center gap-6 md:flex">
         <Link
           href="#"
@@ -43,7 +89,7 @@ export function Header() {
           Casino
         </Link>
         <Link
-          href="#"
+          href="/promotions"
           className="text-sm font-medium text-white hover:text-green-500"
         >
           Promotions
