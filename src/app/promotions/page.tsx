@@ -8,7 +8,6 @@ import {
   Calendar,
   LucideIcon,
 } from "lucide-react";
-import MainLayout from "@/components/layout/main-layout";
 
 const promotions = {
   sports: [
@@ -59,44 +58,42 @@ const promotions = {
 
 export default function PromotionsPage() {
   return (
-    <MainLayout>
-      <div className="container mx-auto p-6">
-        <h1 className="text-2xl font-bold text-white mb-6">Promotions</h1>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold text-white mb-4">Promotions</h1>
 
-        <Tabs defaultValue="sports" className="w-full">
-          <TabsList className="bg-gray-800 w-full justify-start mb-6">
-            <TabsTrigger
-              value="sports"
-              className="data-[state=active]:bg-green-600 text-white data-[state=active]:text-white"
-            >
-              Sports
-            </TabsTrigger>
-            <TabsTrigger
-              value="casino"
-              className="data-[state=active]:bg-green-600 text-white data-[state=active]:text-white"
-            >
-              Casino
-            </TabsTrigger>
-          </TabsList>
+      <Tabs defaultValue="sports" className="w-full">
+        <TabsList className="bg-gray-800 w-full justify-start mb-6">
+          <TabsTrigger
+            value="sports"
+            className="data-[state=active]:bg-green-600 text-white data-[state=active]:text-white"
+          >
+            Sports
+          </TabsTrigger>
+          <TabsTrigger
+            value="casino"
+            className="data-[state=active]:bg-green-600 text-white data-[state=active]:text-white"
+          >
+            Casino
+          </TabsTrigger>
+        </TabsList>
 
-          <TabsContent value="sports">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {promotions.sports.map((promo) => (
-                <PromotionCard key={promo.id} {...promo} />
-              ))}
-            </div>
-          </TabsContent>
+        <TabsContent value="sports">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {promotions.sports.map((promo) => (
+              <PromotionCard key={promo.id} {...promo} />
+            ))}
+          </div>
+        </TabsContent>
 
-          <TabsContent value="casino">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {promotions.casino.map((promo) => (
-                <PromotionCard key={promo.id} {...promo} />
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </div>
-    </MainLayout>
+        <TabsContent value="casino">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {promotions.casino.map((promo) => (
+              <PromotionCard key={promo.id} {...promo} />
+            ))}
+          </div>
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 }
 

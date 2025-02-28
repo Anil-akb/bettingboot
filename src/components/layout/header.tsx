@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Bell, ChevronDown, Globe, Menu, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,10 +12,74 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Header() {
+  const [isMounted, setIsMounted] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [pathname]);
+
+  const isActive = (path: string) => {
+    return pathname === path;
+  };
+
+  // Don't render the mobile menu until after client-side hydration
+  const mobileMenu = isMounted && isSidebarOpen && (
+    <nav className="absolute top-16 left-0 w-full bg-[#131722] text-white md:hidden">
+      <ul className="flex flex-col items-start p-4">
+        <li>
+          <Link
+            href="/sports"
+            className={`block py-2 text-sm font-medium ${
+              isActive("/sports") ? "text-green-500" : "hover:text-green-500"
+            }`}
+          >
+            Sports
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/live"
+            className={`block py-2 text-sm font-medium ${
+              isActive("/live") ? "text-green-500" : "hover:text-green-500"
+            }`}
+          >
+            Live
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/casino"
+            className={`block py-2 text-sm font-medium ${
+              isActive("/casino") ? "text-green-500" : "hover:text-green-500"
+            }`}
+          >
+            Casino
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/promotions"
+            className={`block py-2 text-sm font-medium ${
+              isActive("/promotions")
+                ? "text-green-500"
+                : "hover:text-green-500"
+            }`}
+          >
+            Promotions
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  );
 
   return (
     <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-gray-800 bg-[#131722] px-4 text-white md:px-6">
@@ -31,66 +96,45 @@ export function Header() {
           <h1 className="text-2xl font-bold">Bantubet</h1>
         </Link>
       </div>
-      {isSidebarOpen && (
-        <nav className="absolute top-16 left-0 w-full bg-[#131722] text-white md:hidden">
-          <ul className="flex flex-col items-start p-4">
-            <li>
-              <Link
-                href="#"
-                className="block py-2 text-sm font-medium hover:text-green-500"
-              >
-                Sports
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 text-sm font-medium hover:text-green-500"
-              >
-                Live
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="block py-2 text-sm font-medium hover:text-green-500"
-              >
-                Casino
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/promotions"
-                className="block py-2 text-sm font-medium hover:text-green-500"
-              >
-                Promotions
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      )}
+      {mobileMenu}
       <div className="hidden items-center gap-6 md:flex">
         <Link
-          href="#"
-          className="text-sm font-medium text-white hover:text-green-500"
+          href="/sports"
+          className={`text-sm font-medium ${
+            isActive("/sports")
+              ? "text-green-500"
+              : "text-white hover:text-green-500"
+          }`}
         >
           Sports
         </Link>
         <Link
-          href="#"
-          className="text-sm font-medium text-white hover:text-green-500"
+          href="/live"
+          className={`text-sm font-medium ${
+            isActive("/live")
+              ? "text-green-500"
+              : "text-white hover:text-green-500"
+          }`}
         >
           Live
         </Link>
         <Link
-          href="#"
-          className="text-sm font-medium text-white hover:text-green-500"
+          href="/casino"
+          className={`text-sm font-medium ${
+            isActive("/casino")
+              ? "text-green-500"
+              : "text-white hover:text-green-500"
+          }`}
         >
           Casino
         </Link>
         <Link
           href="/promotions"
-          className="text-sm font-medium text-white hover:text-green-500"
+          className={`text-sm font-medium ${
+            isActive("/promotions")
+              ? "text-green-500"
+              : "text-white hover:text-green-500"
+          }`}
         >
           Promotions
         </Link>

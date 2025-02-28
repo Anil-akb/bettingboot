@@ -13,16 +13,17 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isBetSlipCollapsed, setIsBetSlipCollapsed] = useState(false);
 
   return (
     <div className="flex min-h-screen flex-col bg-[#1a1e25]">
       <Header />
-      <div className="flex flex-1">
-        <div className="relative hidden lg:block">
+      <div className="flex flex-1 overflow-hidden">
+        <div className="relative hidden lg:block h-full">
           <SportsSidebar
             className={`transition-all duration-300 ${
               isSidebarCollapsed ? "w-[60px]" : "w-[240px]"
-            }`}
+            } h-full`}
             isCollapsed={isSidebarCollapsed}
           />
           <Button
@@ -39,7 +40,26 @@ export default function MainLayout({
           </Button>
         </div>
         <main className="flex-1 overflow-auto">{children}</main>
-        <BettingSlip className="hidden lg:block" />
+        <div className="relative hidden lg:block">
+          <BettingSlip
+            className={`transition-all duration-300 ${
+              isBetSlipCollapsed ? "w-[60px]" : "w-[300px]"
+            } h-full`}
+            isCollapsed={isBetSlipCollapsed}
+          />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setIsBetSlipCollapsed(!isBetSlipCollapsed)}
+            className="absolute -left-3 top-4 h-6 w-6 rounded-full bg-[#1E2330] p-0 hover:bg-green-500/20 border border-gray-700"
+          >
+            {isBetSlipCollapsed ? (
+              <ChevronLeft className="h-4 w-4 text-gray-400" />
+            ) : (
+              <ChevronRight className="h-4 w-4 text-gray-400" />
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );
