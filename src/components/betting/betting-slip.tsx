@@ -108,19 +108,19 @@ export function BettingSlip({
                   <TabsList className="grid w-full grid-cols-3 bg-gray-800 p-0">
                     <TabsTrigger
                       value="single"
-                      className="rounded-none text-white data-[state=active]:bg-green-600 data-[state=active]:text-white"
+                      className="rounded-lg cursor-pointer text-white data-[state=active]:bg-green-600 data-[state=active]:text-white"
                     >
                       Single
                     </TabsTrigger>
                     <TabsTrigger
                       value="multiple"
-                      className="rounded-none text-white data-[state=active]:bg-green-600 data-[state=active]:text-white"
+                      className="rounded-lg cursor-pointer text-white data-[state=active]:bg-green-600 data-[state=active]:text-white"
                     >
                       Multiple
                     </TabsTrigger>
                     <TabsTrigger
                       value="system"
-                      className="rounded-none text-white data-[state=active]:bg-green-600 data-[state=active]:text-white"
+                      className="rounded-lg cursor-pointer text-white data-[state=active]:bg-green-600 data-[state=active]:text-white"
                     >
                       System
                     </TabsTrigger>
@@ -204,7 +204,7 @@ export function BettingSlip({
                         </span>
                       </div>
 
-                      <Button className="w-full bg-green-600 hover:bg-green-700">
+                      <Button className="w-full bg-green-600 cursor-pointer hover:bg-green-700">
                         Place Bet
                       </Button>
                     </div>

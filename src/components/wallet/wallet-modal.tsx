@@ -35,10 +35,36 @@ export function WalletModal() {
       icon: <CreditCard className="h-5 w-5" />,
       label: "Deposit",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Deposit Funds</h3>
-          {/* Add your deposit form/content here */}
-          <p>Deposit content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">
+                Choose Payment Method
+              </h4>
+              <div className="grid grid-cols-2 gap-4">
+                <Button className="bg-gray-700 hover:bg-gray-600">
+                  <CreditCard className="h-4 w-4 mr-2" />
+                  Credit Card
+                </Button>
+                <Button className="bg-gray-700 hover:bg-gray-600">
+                  <PiggyBank className="h-4 w-4 mr-2" />
+                  Bank Transfer
+                </Button>
+              </div>
+            </div>
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Enter Amount</h4>
+              <input
+                type="number"
+                placeholder="Amount"
+                className="w-full p-2 bg-gray-700 rounded-lg text-white"
+              />
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              Deposit Now
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -46,9 +72,34 @@ export function WalletModal() {
       icon: <ArrowDownToLine className="h-5 w-5" />,
       label: "Withdraw",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Withdraw Funds</h3>
-          <p>Withdraw content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Withdrawal Method</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <Button className="bg-gray-700 hover:bg-gray-600">
+                  <CreditCard className="h-4 w-4 mr-2" />
+                  Credit Card
+                </Button>
+                <Button className="bg-gray-700 hover:bg-gray-600">
+                  <PiggyBank className="h-4 w-4 mr-2" />
+                  Bank Transfer
+                </Button>
+              </div>
+            </div>
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Enter Amount</h4>
+              <input
+                type="number"
+                placeholder="Amount"
+                className="w-full p-2 bg-gray-700 rounded-lg text-white"
+              />
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              Request Withdrawal
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -56,9 +107,26 @@ export function WalletModal() {
       icon: <History className="h-5 w-5" />,
       label: "Bet History",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Betting History</h3>
-          <p>Betting history content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Recent Bets</h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span>Arsenal vs Chelsea</span>
+                  <span className="text-green-500">+$50.00</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Man Utd vs Liverpool</span>
+                  <span className="text-red-500">-$20.00</span>
+                </div>
+              </div>
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              View Full History
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -66,9 +134,25 @@ export function WalletModal() {
       icon: <Gift className="h-5 w-5" />,
       label: "Bonuses",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Available Bonuses</h3>
-          <p>Bonuses content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Welcome Bonus</h4>
+              <p className="text-sm text-gray-400">
+                Get a 100% bonus on your first deposit up to $500.
+              </p>
+            </div>
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Referral Bonus</h4>
+              <p className="text-sm text-gray-400">
+                Earn $50 for every friend you refer.
+              </p>
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              Claim Bonus
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -76,9 +160,19 @@ export function WalletModal() {
       icon: <Mail className="h-5 w-5" />,
       label: "Messages",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Messages</h3>
-          <p>Messages content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">New Message</h4>
+              <p className="text-sm text-gray-400">
+                You have a new message from support.
+              </p>
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              View All Messages
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -86,9 +180,19 @@ export function WalletModal() {
       icon: <PiggyBank className="h-5 w-5" />,
       label: "Cashback",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Cashback Offers</h3>
-          <p>Cashback content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Weekly Cashback</h4>
+              <p className="text-sm text-gray-400">
+                Get 10% cashback on all losses this week.
+              </p>
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              Claim Cashback
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -96,9 +200,19 @@ export function WalletModal() {
       icon: <DollarSign className="h-5 w-5" />,
       label: "Cashout",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Cashout Options</h3>
-          <p>Cashout content goes here...</p>
+          <div className="space-y-4">
+            <div className="bg-gray-800 p-4 rounded-lg">
+              <h4 className="text-sm font-medium mb-2">Partial Cashout</h4>
+              <p className="text-sm text-gray-400">
+                Cashout a portion of your bet.
+              </p>
+            </div>
+            <Button className="w-full bg-green-600 hover:bg-green-700">
+              Request Cashout
+            </Button>
+          </div>
         </div>
       ),
     },
@@ -106,9 +220,14 @@ export function WalletModal() {
       icon: <LogOut className="h-5 w-5" />,
       label: "Logout",
       component: (
-        <div className="p-4">
+        <div className="p-6">
           <h3 className="text-lg font-semibold mb-4">Logout</h3>
-          <p>Are you sure you want to logout?</p>
+          <p className="text-sm text-gray-400 mb-4">
+            Are you sure you want to logout?
+          </p>
+          <Button className="w-full bg-red-600 hover:bg-red-700">
+            Confirm Logout
+          </Button>
         </div>
       ),
     },

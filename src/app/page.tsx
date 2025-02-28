@@ -11,13 +11,13 @@ export default function Home() {
   return (
     <main className="flex-1 overflow-auto p-4">
       {/* Hero Banner */}
-      <div className="relative h-[200px] w-full overflow-hidden md:h-[300px]">
+      <div className="relative h-[200px] w-full overflow-hidden md:h-[300px] rounded-lg">
         <Image
           src="/img.jpg"
           alt="Welcome Bonus"
           width={1200}
           height={300}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover rounded-lg"
         />
         <div className="absolute inset-0 flex flex-col items-start justify-center bg-gradient-to-r from-black/70 to-transparent p-6">
           <h1 className="mb-2 text-2xl font-bold text-white md:text-4xl">
