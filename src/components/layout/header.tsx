@@ -146,26 +146,26 @@ export function Header() {
             <Input
               type="search"
               placeholder="Search..."
-              className="h-9 w-[180px] rounded-md border-gray-700 bg-gray-800 pl-9 text-sm text-white placeholder:text-gray-400 focus:border-green-500 focus:ring-green-500"
+              className="h-9 w-[180px] rounded-md border-gray-700 bg-gray-800 pl-9 text-sm text-white placeholder:text-gray-400 focus:border-green-500 focus:ring-green-500 "
             />
           </div>
         </div>
-        <WalletModal className="hidden md:flex" />
+        <WalletModal className="hidden md:flex cursor-pointer" />
         <Button
           variant="ghost"
           size="icon"
           className="text-gray-400 hover:text-white"
         >
-          <Bell className="h-5 w-5" />
+          <Bell className="h-5 w-5 cursor-pointer" />
         </Button>
         <Button
           variant="ghost"
           size="sm"
           className="gap-1 text-gray-400 hover:text-white"
         >
-          <Globe className="h-4 w-4" />
+          <Globe className="h-4 w-4 cursor-pointer" />
           <span className="hidden md:inline">EN</span>
-          <ChevronDown className="h-4 w-4" />
+          <ChevronDown className="h-4 w-4 cursor-pointer" />
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -174,7 +174,7 @@ export function Header() {
               size="icon"
               className="text-gray-400 hover:text-white"
             >
-              <User className="h-5 w-5" />
+              <User className="h-5 w-5 cursor-pointer" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 bg-[#131722] text-white border-gray-700">
@@ -189,13 +189,13 @@ export function Header() {
         <Button
           variant="outline"
           size="sm"
-          className="hidden border-green-600 bg-transparent text-green-500 hover:bg-green-600 hover:text-white md:inline-flex"
+          className="hidden border-green-600 bg-transparent cursor-pointer text-green-500 hover:bg-green-600 hover:text-white md:inline-flex"
         >
           Login
         </Button>
         <Button
           size="sm"
-          className="hidden bg-green-600 text-white hover:bg-green-700 md:inline-flex"
+          className="hidden bg-green-600 cursor-pointer text-white hover:bg-green-700 md:inline-flex"
         >
           Register
         </Button>

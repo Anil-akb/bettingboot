@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Clock, Star, Trophy, Zap, Activity } from "lucide-react";
+import { Clock, Trophy, Zap, Activity } from "lucide-react";
 
 interface MatchCardProps {
   league: string;

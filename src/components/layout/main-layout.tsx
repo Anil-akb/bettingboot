@@ -16,6 +16,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen flex-col bg-[#1a1e25]">
       <Header />
       <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
         <div className="relative hidden lg:block h-full">
           <SportsSidebar
             className={`transition-all duration-300 ${
@@ -27,34 +28,37 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
             variant="ghost"
             size="sm"
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-            className="absolute -right-3 top-4 h-6 w-6 rounded-full bg-[#1E2330] p-0 hover:bg-green-500/20 border border-gray-700"
+            className="absolute -right-3 top-4 h-6 w-6 rounded-full bg-[#1E2330] p-0 hover:bg-green-500/20 border border-gray-700 z-10"
           >
             {isSidebarCollapsed ? (
-              <ChevronRight className="h-4 w-4 text-gray-400" />
+              <ChevronRight className="h-4 w-4 text-gray-400 cursor-pointer" />
             ) : (
-              <ChevronLeft className="h-4 w-4 text-gray-400" />
+              <ChevronLeft className="h-4 w-4 text-gray-400 cursor-pointer" />
             )}
           </Button>
         </div>
+
+        {/* Main Content */}
         <main className="flex-1 overflow-auto">{children}</main>
-        <div className="relative hidden lg:block">
+
+        {/* Betting Slip */}
+        <div className="relative hidden lg:block h-full">
           <BettingSlip
             className={`transition-all duration-300 ${
-              isBetSlipCollapsed ? "w-[60px]" : "w-[300px]"
+              isBetSlipCollapsed ? "w-[0px]" : "w-[300px]"
             } h-full`}
             collapsed={isBetSlipCollapsed}
-            showWalletIcon={false}
           />
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setIsBetSlipCollapsed(!isBetSlipCollapsed)}
-            className="absolute -left-3 top-4 h-6 w-6 rounded-full bg-[#1E2330] p-0 hover:bg-green-500/20 border border-gray-700"
+            className="absolute -left-6 top-4 h-6 w-6 rounded-full bg-[#1E2330] p-0 hover:bg-green-500/20 border border-gray-700 z-10"
           >
             {isBetSlipCollapsed ? (
-              <ChevronLeft className="h-4 w-4 text-gray-400" />
+              <ChevronLeft className="h-4 w-4 text-gray-400 cursor-pointer" />
             ) : (
-              <ChevronRight className="h-4 w-4 text-gray-400" />
+              <ChevronRight className="h-4 w-4 text-gray-400 cursor-pointer" />
             )}
           </Button>
         </div>

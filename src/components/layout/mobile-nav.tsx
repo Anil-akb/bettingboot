@@ -7,10 +7,9 @@ import {
   Home,
   Trophy,
   PlayCircle,
-  Gift,
   Wallet,
-  Menu,
   Receipt,
+  LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -19,7 +18,7 @@ import { WalletModal } from "@/components/wallet/wallet-modal";
 
 interface NavItem {
   label: string;
-  icon: any;
+  icon: LucideIcon;
   href?: string;
   onClick?: () => void;
   isSlip?: boolean;
@@ -145,6 +144,7 @@ export function MobileNav() {
       <WalletModal
         isOpen={isWalletOpen}
         onClose={() => setIsWalletOpen(false)}
+        className="hidden"
       />
 
       {/* Add padding to bottom of the page to account for nav bar */}

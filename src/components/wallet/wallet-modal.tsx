@@ -36,6 +36,7 @@ interface WalletModalProps {
 
 export function WalletModal({ isOpen, onClose, className }: WalletModalProps) {
   const [activeTab, setActiveTab] = useState("Deposit");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const walletOptions: WalletOption[] = [
     {
@@ -252,11 +253,30 @@ export function WalletModal({ isOpen, onClose, className }: WalletModalProps) {
           <span className="hidden md:inline">$0.00</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[990px] bg-[#131722] text-white p-0">
-        <div className="flex h-[600px]">
+      <DialogContent className="sm:max-w-[990px] bg-[#131722] text-white p-0 w-full h-full sm:h-[600px]">
+        <div className="flex flex-col sm:flex-row h-full sm:h-[400px]">
+          {/* Mobile Menu Button */}
+          <div className="sm:hidden flex items-center justify-between p-4 border-b border-gray-700">
+            <DialogTitle>Wallet Options</DialogTitle>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="text-gray-400 mr-8 border border-gray-700"
+            >
+              {activeTab} ▼
+            </Button>
+          </div>
+
           {/* Left Sidebar */}
-          <div className="w-64 border-r border-gray-700">
-            <DialogHeader className="p-4 border-b border-gray-700">
+          <div
+            className={cn(
+              "w-full sm:w-64 border-r border-gray-700",
+              "sm:block",
+              isSidebarOpen ? "block" : "hidden"
+            )}
+          >
+            <DialogHeader className="p-4 border-b border-gray-700 hidden sm:block">
               <DialogTitle>Wallet Options</DialogTitle>
             </DialogHeader>
             <div className="flex flex-col">
@@ -269,7 +289,10 @@ export function WalletModal({ isOpen, onClose, className }: WalletModalProps) {
                       ? "bg-gray-800 text-green-500"
                       : "hover:bg-gray-800 hover:text-green-500"
                   }`}
-                  onClick={() => setActiveTab(option.label)}
+                  onClick={() => {
+                    setActiveTab(option.label);
+                    setIsSidebarOpen(false);
+                  }}
                 >
                   {option.icon}
                   {option.label}
@@ -279,7 +302,12 @@ export function WalletModal({ isOpen, onClose, className }: WalletModalProps) {
           </div>
 
           {/* Right Content Area */}
-          <div className="flex-1">
+          <div
+            className={cn(
+              "flex-1",
+              isSidebarOpen ? "hidden sm:block" : "block"
+            )}
+          >
             <div className="h-full">
               {
                 walletOptions.find((option) => option.label === activeTab)
