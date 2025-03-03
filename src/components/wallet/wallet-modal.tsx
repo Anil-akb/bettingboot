@@ -20,6 +20,7 @@ import {
   DollarSign,
   LogOut,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface WalletOption {
   icon: React.ReactNode;
@@ -27,7 +28,13 @@ interface WalletOption {
   component: React.ReactNode;
 }
 
-export function WalletModal() {
+interface WalletModalProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+  className?: string;
+}
+
+export function WalletModal({ isOpen, onClose, className }: WalletModalProps) {
   const [activeTab, setActiveTab] = useState("Deposit");
 
   const walletOptions: WalletOption[] = [
@@ -234,12 +241,12 @@ export function WalletModal() {
   ];
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogTrigger asChild>
         <Button
           variant="ghost"
           size="sm"
-          className="gap-2 text-gray-400 hover:text-white"
+          className={cn("gap-2 text-gray-400 hover:text-white", className)}
         >
           <Wallet className="h-5 w-5" />
           <span className="hidden md:inline">$0.00</span>

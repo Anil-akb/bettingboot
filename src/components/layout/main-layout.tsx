@@ -1,17 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Header } from "./header";
+import { Header } from "@/components/layout/header";
 import { SportsSidebar } from "../betting/sports-sidebar";
 import { BettingSlip } from "../betting/betting-slip";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { MobileNav } from "@/components/layout/mobile-nav";
 
-export default function MainLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function MainLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isBetSlipCollapsed, setIsBetSlipCollapsed] = useState(false);
 
@@ -45,7 +42,8 @@ export default function MainLayout({
             className={`transition-all duration-300 ${
               isBetSlipCollapsed ? "w-[60px]" : "w-[300px]"
             } h-full`}
-            isCollapsed={isBetSlipCollapsed}
+            collapsed={isBetSlipCollapsed}
+            showWalletIcon={false}
           />
           <Button
             variant="ghost"
@@ -61,6 +59,8 @@ export default function MainLayout({
           </Button>
         </div>
       </div>
+      {/* Mobile Navigation - Only shows on mobile screens */}
+      <MobileNav />
     </div>
   );
 }

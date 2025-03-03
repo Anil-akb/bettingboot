@@ -66,14 +66,6 @@ export default function MatchCard({
               )}
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 text-gray-300 hover:text-yellow-500 transition-colors"
-          >
-            <Star className="h-4 w-4" />
-            <span className="sr-only">Add to favorites</span>
-          </Button>
         </div>
         <div className="p-4 relative">
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />

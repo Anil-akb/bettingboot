@@ -150,7 +150,7 @@ export function Header() {
             />
           </div>
         </div>
-        <WalletModal />
+        <WalletModal className="hidden md:flex" />
         <Button
           variant="ghost"
           size="icon"
