@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface SportsSidebarProps {
   className?: string;
@@ -23,6 +24,9 @@ interface SportsSidebarProps {
 }
 
 export function SportsSidebar({ className, isCollapsed }: SportsSidebarProps) {
+  const [sportsOpen, setSportsOpen] = useState(true);
+  const [leaguesOpen, setLeaguesOpen] = useState(true);
+
   const sports = [
     { name: "Football", icon: Football, active: true },
     { name: "Basketball", icon: Basketball },
@@ -33,12 +37,30 @@ export function SportsSidebar({ className, isCollapsed }: SportsSidebarProps) {
   ];
 
   const popularLeagues = [
-    "English Premier League",
-    "Spanish La Liga",
-    "UEFA Champions League",
-    "German Bundesliga",
-    "Italian Serie A",
-    "French Ligue 1",
+    {
+      name: "English Premier League",
+      icon: <Trophy className="h-4 w-4 " />,
+    },
+    {
+      name: "Spanish La Liga",
+      icon: <Trophy className="h-4 w-4 " />,
+    },
+    {
+      name: "UEFA Champions League",
+      icon: <Trophy className="h-4 w-4 " />,
+    },
+    {
+      name: "German Bundesliga",
+      icon: <Trophy className="h-4 w-4 " />,
+    },
+    {
+      name: "Italian Serie A",
+      icon: <Trophy className="h-4 w-4 " />,
+    },
+    {
+      name: "French Ligue 1",
+      icon: <Trophy className="h-4 w-4 " />,
+    },
   ];
 
   return (
@@ -77,7 +99,7 @@ export function SportsSidebar({ className, isCollapsed }: SportsSidebarProps) {
               variant="ghost"
               size="sm"
               className={cn(
-                "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500",
+                "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500 cursor-pointer",
                 isCollapsed ? "px-2" : "gap-2"
               )}
             >
@@ -88,7 +110,7 @@ export function SportsSidebar({ className, isCollapsed }: SportsSidebarProps) {
               variant="ghost"
               size="sm"
               className={cn(
-                "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500",
+                "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500 cursor-pointer",
                 isCollapsed ? "px-2" : "gap-2"
               )}
             >
@@ -99,7 +121,7 @@ export function SportsSidebar({ className, isCollapsed }: SportsSidebarProps) {
               variant="ghost"
               size="sm"
               className={cn(
-                "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500",
+                "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500 cursor-pointer",
                 isCollapsed ? "px-2" : "gap-2"
               )}
             >
@@ -110,55 +132,71 @@ export function SportsSidebar({ className, isCollapsed }: SportsSidebarProps) {
         </div>
 
         <div className="mb-4">
-          <div className="mb-2 flex items-center justify-between">
+          <div
+            className="mb-2 flex items-center justify-between cursor-pointer"
+            onClick={() => setSportsOpen(!sportsOpen)}
+          >
             {!isCollapsed && (
               <h3 className="text-sm font-medium text-gray-400">Sports</h3>
             )}
+            <ChevronRight
+              className={`h-4 w-4 text-gray-400 transition-transform ${
+                sportsOpen ? "rotate-90" : ""
+              }`}
+            />
           </div>
-          <div className="space-y-1">
-            {sports.map((sport) => (
-              <Button
-                key={sport.name}
-                variant="ghost"
-                size="sm"
-                className={cn(
-                  "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500",
-                  isCollapsed ? "px-2" : "gap-2",
-                  sport.active && "bg-gray-800 text-green-500"
-                )}
-              >
-                <sport.icon className="h-4 w-4" />
-                {!isCollapsed && sport.name}
-              </Button>
-            ))}
-          </div>
+          {sportsOpen && (
+            <div className="space-y-1">
+              {sports.map((sport) => (
+                <Button
+                  key={sport.name}
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    "w-full justify-start text-sm font-normal text-white hover:bg-gray-800 hover:text-green-500 cursor-pointer",
+                    isCollapsed ? "px-2" : "gap-2",
+                    sport.active && "bg-gray-800 text-green-500"
+                  )}
+                >
+                  <sport.icon className="h-4 w-4" />
+                  {!isCollapsed && sport.name}
+                </Button>
+              ))}
+            </div>
+          )}
         </div>
 
         {!isCollapsed && (
           <div className="mb-4">
-            <div className="mb-2 flex items-center justify-between">
+            <div
+              className="mb-2 flex items-center justify-between cursor-pointer"
+              onClick={() => setLeaguesOpen(!leaguesOpen)}
+            >
               <h3 className="text-sm font-medium text-gray-400">
                 Popular Leagues
               </h3>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-5 w-5 text-gray-400 hover:text-white"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </Button>
+              <ChevronRight
+                className={`h-4 w-4 text-gray-400 transition-transform ${
+                  leaguesOpen ? "rotate-90" : ""
+                }`}
+              />
             </div>
-            <div className="space-y-1">
-              {popularLeagues.map((league) => (
-                <Link
-                  key={league}
-                  href="#"
-                  className="block rounded-md px-3 py-1.5 text-sm hover:bg-gray-800 hover:text-green-500"
-                >
-                  {league}
-                </Link>
-              ))}
-            </div>
+            {leaguesOpen && (
+              <div className="space-y-1">
+                {popularLeagues.map((league) => (
+                  <Link
+                    key={league.name}
+                    href="#"
+                    className="block rounded-md px-3 py-1.5 text-sm hover:bg-gray-800 hover:text-green-500"
+                  >
+                    <div className="flex items-center gap-2">
+                      {league.icon}
+                      {league.name}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

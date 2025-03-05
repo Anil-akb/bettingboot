@@ -12,6 +12,8 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 type SportCategory = {
   id: string;
@@ -78,8 +80,13 @@ export default function SideNav() {
     setIsMounted(true);
   }, []);
 
-  const toggleSection = (title: string) => {
-    setExpandedSection(expandedSection === title ? null : title);
+  const toggleSection = (section: string) => {
+    if (expandedSection === section) {
+      setExpandedSection(null);
+      setExpandedSubMenus({});
+    } else {
+      setExpandedSection(section);
+    }
   };
 
   const toggleSubMenu = (menuId: string) => {
@@ -101,29 +108,33 @@ export default function SideNav() {
         <div className="space-y-4">
           {/* Popular Leagues Section */}
           <div className="sidebar-dropdown">
-            <button
-              type="button"
+            <Button
+              variant="ghost"
               onClick={() => toggleSection("leagues")}
-              className="sidebar-dropdown-trigger"
-            >
-              <span>Popular Leagues</span>
-              {expandedSection === "leagues" ? (
-                <ChevronUp className="h-4 w-4" />
-              ) : (
-                <ChevronDown className="h-4 w-4" />
+              className={cn(
+                "w-full justify-between font-normal hover:bg-accent",
+                expandedSection === "leagues" && "bg-accent"
               )}
-            </button>
+            >
+              Popular Leagues
+              {expandedSection === "leagues" ? (
+                <ChevronUp className="h-4 w-4 ml-2" />
+              ) : (
+                <ChevronDown className="h-4 w-4 ml-2" />
+              )}
+            </Button>
             <div
-              className={`submenu-content ${
-                expandedSection === "leagues" ? "expanded" : ""
-              }`}
+              className={cn(
+                "overflow-hidden transition-all duration-300",
+                expandedSection === "leagues" ? "max-h-screen" : "max-h-0"
+              )}
             >
               <div>
                 {sportCategories
                   .filter((cat) => cat.leagues)
                   .map((category) => (
                     <div key={category.id}>
-                      <button
+                      <Button
                         type="button"
                         onClick={() => toggleSubMenu(`leagues-${category.id}`)}
                         className="submenu-item flex items-center justify-between w-full"
@@ -137,7 +148,7 @@ export default function SideNav() {
                         ) : (
                           <ChevronDown className="h-4 w-4" />
                         )}
-                      </button>
+                      </Button>
                       <div
                         className={`submenu-content ${
                           expandedSubMenus[`leagues-${category.id}`]
@@ -165,22 +176,26 @@ export default function SideNav() {
 
           {/* Sports Section */}
           <div className="sidebar-dropdown">
-            <button
-              type="button"
+            <Button
+              variant="ghost"
               onClick={() => toggleSection("sports")}
-              className="sidebar-dropdown-trigger"
-            >
-              <span>Sports</span>
-              {expandedSection === "sports" ? (
-                <ChevronUp className="h-4 w-4" />
-              ) : (
-                <ChevronDown className="h-4 w-4" />
+              className={cn(
+                "w-full justify-between font-normal hover:bg-accent",
+                expandedSection === "sports" && "bg-accent"
               )}
-            </button>
+            >
+              Sports
+              {expandedSection === "sports" ? (
+                <ChevronUp className="h-4 w-4 ml-2" />
+              ) : (
+                <ChevronDown className="h-4 w-4 ml-2" />
+              )}
+            </Button>
             <div
-              className={`submenu-content cursor-pointer ${
-                expandedSection === "sports" ? "expanded" : ""
-              }`}
+              className={cn(
+                "overflow-hidden transition-all duration-300",
+                expandedSection === "sports" ? "max-h-screen" : "max-h-0"
+              )}
             >
               <div>
                 {sportCategories.map((category) => (
@@ -201,22 +216,26 @@ export default function SideNav() {
 
           {/* Quick Links Section */}
           <div className="sidebar-dropdown">
-            <button
-              type="button"
+            <Button
+              variant="ghost"
               onClick={() => toggleSection("quicklinks")}
-              className="sidebar-dropdown-trigger cursor-pointer"
-            >
-              <span>Quick Links</span>
-              {expandedSection === "quicklinks" ? (
-                <ChevronUp className="h-4 w-4" />
-              ) : (
-                <ChevronDown className="h-4 w-4" />
+              className={cn(
+                "w-full justify-between font-normal hover:bg-accent",
+                expandedSection === "quicklinks" && "bg-accent"
               )}
-            </button>
+            >
+              Quick Links
+              {expandedSection === "quicklinks" ? (
+                <ChevronUp className="h-4 w-4 ml-2" />
+              ) : (
+                <ChevronDown className="h-4 w-4 ml-2" />
+              )}
+            </Button>
             <div
-              className={`submenu-content ${
-                expandedSection === "quicklinks" ? "expanded" : ""
-              }`}
+              className={cn(
+                "overflow-hidden transition-all duration-300",
+                expandedSection === "quicklinks" ? "max-h-screen" : "max-h-0"
+              )}
             >
               <div>
                 {[
